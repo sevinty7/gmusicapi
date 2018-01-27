@@ -285,6 +285,9 @@ class Call(with_metaclass(BuildRequestMeta, object)):
     @staticmethod
     def _parse_json(text):
         try:
+            text = text.replace('\u2117','')
+            text = text.replace('\u3010','')
+            text = text.replace('\u3011','')
             return json.loads(text)
         except ValueError as e:
             raise_from(ParseException(str(e)), e)
